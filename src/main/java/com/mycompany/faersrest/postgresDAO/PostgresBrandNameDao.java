@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class PostgresBrandNameDao implements BrandNameDao {
     
+    
     private JdbcTemplate jdbcTemplate;
     
     public PostgresBrandNameDao(JdbcTemplate jdbcTemplate) {
