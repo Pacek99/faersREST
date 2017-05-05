@@ -14,25 +14,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SubstanceName {
     
-    private long openfda_id;
     private String brand_name;
     private String substance_name;
 
     public SubstanceName() {
     }
 
-    public SubstanceName(long openfda_id, String brand_name, String substance_name) {
-        this.openfda_id = openfda_id;
+    public SubstanceName(String brand_name, String substance_name) {
         this.brand_name = brand_name;
         this.substance_name = substance_name;
-    }
-
-    public long getOpenfda_id() {
-        return openfda_id;
-    }
-
-    public void setOpenfda_id(long openfda_id) {
-        this.openfda_id = openfda_id;
     }
 
     public String getBrand_name() {

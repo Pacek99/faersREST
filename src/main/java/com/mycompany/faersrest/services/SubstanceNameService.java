@@ -8,7 +8,6 @@ package com.mycompany.faersrest.services;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
 import com.mycompany.faersrest.DaoFactory;
 import com.mycompany.faersrest.model.SubstanceName;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
