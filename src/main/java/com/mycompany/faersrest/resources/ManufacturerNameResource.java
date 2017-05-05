@@ -5,8 +5,8 @@
  */
 package com.mycompany.faersrest.resources;
 
-import com.mycompany.faersrest.model.SubstanceName;
-import com.mycompany.faersrest.services.SubstanceNameService;
+import com.mycompany.faersrest.model.ManufacturerName;
+import com.mycompany.faersrest.services.ManufacturerNameService;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,14 +18,14 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Patrik Rojek
  */
-@Path("/substancename")
-public class SubstanceNameResource {    
-    SubstanceNameService substanceNameService = new SubstanceNameService();
+@Path("/manufacturername")
+public class ManufacturerNameResource {
+    ManufacturerNameService manufacturerNameService = new ManufacturerNameService();
     
     @GET
-    @Path("/{substanceName}")
+    @Path("/{manufacturerName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SubstanceName> getBrandNames(@PathParam("substanceName") String name){
-        return substanceNameService.getSubstanceName(name); 
+    public List<ManufacturerName> getBrandNames(@PathParam("manufacturerName") String name){
+        return manufacturerNameService.getManufacturerName(name); 
     }
 }

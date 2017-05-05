@@ -8,7 +8,9 @@ package com.mycompany.faersrest;
 import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
+import com.mycompany.faersrest.DAO.ManufacturerNameDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSubstanceNameDao;
 import org.postgresql.ds.PGPoolingDataSource;
 
@@ -22,6 +24,7 @@ public enum DaoFactory {
 
     private BrandNameDao postgresBrandNameDao;
     private SubstanceNameDao postgresSubstanceNameDao;
+    private ManufacturerNameDao postgresManufacturerNameDao;
 
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
@@ -29,6 +32,10 @@ public enum DaoFactory {
     
     public SubstanceNameDao getSubstanceNameDao() {
         return getPostgresSubstanceNameDao();
+    }
+    
+    public ManufacturerNameDao getManufacturerNameDao() {
+        return getPostgresManufacturerNameDao();
     }
 
     private BrandNameDao getPostgresBrandNameDao() {
@@ -53,5 +60,17 @@ public enum DaoFactory {
             postgresSubstanceNameDao = new PostgresSubstanceNameDao(jdbcTemplate);
         }
         return postgresSubstanceNameDao;
+    }
+    
+    private ManufacturerNameDao getPostgresManufacturerNameDao() {
+        if (postgresManufacturerNameDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("postgres");
+            dataSource.setPassword("sql");
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
+        }
+        return postgresManufacturerNameDao;
     }
 }
