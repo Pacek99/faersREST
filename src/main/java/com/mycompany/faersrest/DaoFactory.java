@@ -9,8 +9,10 @@ import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
+import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresSideEffectsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSubstanceNameDao;
 import org.postgresql.ds.PGPoolingDataSource;
 
@@ -25,6 +27,7 @@ public enum DaoFactory {
     private BrandNameDao postgresBrandNameDao;
     private SubstanceNameDao postgresSubstanceNameDao;
     private ManufacturerNameDao postgresManufacturerNameDao;
+    private SideEffectsDao postgresSideEffectsDao;
 
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
@@ -36,6 +39,10 @@ public enum DaoFactory {
     
     public ManufacturerNameDao getManufacturerNameDao() {
         return getPostgresManufacturerNameDao();
+    }
+    
+    public SideEffectsDao getSideEffectsDao() {
+        return getPostgresSideEffectsDao();
     }
 
     private BrandNameDao getPostgresBrandNameDao() {
@@ -72,5 +79,17 @@ public enum DaoFactory {
             postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
         }
         return postgresManufacturerNameDao;
+    }
+
+    private SideEffectsDao getPostgresSideEffectsDao() {
+        if (postgresSideEffectsDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("postgres");
+            dataSource.setPassword("sql");
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresSideEffectsDao = new PostgresSideEffectsDao(jdbcTemplate);
+        }
+        return postgresSideEffectsDao;
     }
 }
