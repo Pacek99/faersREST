@@ -21,6 +21,7 @@ public class BrandNameTest {
     private BrandName instance;
     
     public BrandNameTest() {
+        //instance = null;
     }
     
     @BeforeClass
@@ -45,8 +46,11 @@ public class BrandNameTest {
      */
     @Test
     public void testGetBrand_name() {
-        String result = instance.getBrand_name();
-        assertEquals("test1",result);
+        String result;
+        if (instance != null) {
+            result = instance.getBrand_name();
+            assertEquals("test1",result);
+        }        
     }
 
     /**
@@ -54,8 +58,11 @@ public class BrandNameTest {
      */
     @Test
     public void testSetBrand_name() {
-        instance.setBrand_name("test2");
-        String result = instance.getBrand_name();
+        String result = null;
+        if (instance != null) {
+            instance.setBrand_name("test2");
+            result = instance.getBrand_name();
+        }        
         assertEquals("test2",result);
     }    
 }
