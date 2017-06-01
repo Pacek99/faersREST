@@ -21,7 +21,6 @@ public class BrandNameTest {
     private BrandName instance;
     
     public BrandNameTest() {
-        //instance = null;
     }
     
     @BeforeClass
