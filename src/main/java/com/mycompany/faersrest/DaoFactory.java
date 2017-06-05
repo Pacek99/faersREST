@@ -49,7 +49,7 @@ public enum DaoFactory {
         if (postgresBrandNameDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
-            dataSource.setUser("postgres");
+            dataSource.setUser("faers");
             dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresBrandNameDao = new PostgresBrandNameDao(jdbcTemplate);
@@ -61,7 +61,7 @@ public enum DaoFactory {
         if (postgresSubstanceNameDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
-            dataSource.setUser("postgres");
+            dataSource.setUser("faers");
             dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSubstanceNameDao = new PostgresSubstanceNameDao(jdbcTemplate);
@@ -73,7 +73,7 @@ public enum DaoFactory {
         if (postgresManufacturerNameDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
-            dataSource.setUser("postgres");
+            dataSource.setUser("faers");
             dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
@@ -85,7 +85,7 @@ public enum DaoFactory {
         if (postgresSideEffectsDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
-            dataSource.setUser("postgres");
+            dataSource.setUser("faers");
             dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSideEffectsDao = new PostgresSideEffectsDao(jdbcTemplate);
