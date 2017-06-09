@@ -26,7 +26,7 @@ public class PostgresManufacturerNameDao implements ManufacturerNameDao {
     @Override
     public List<ManufacturerName> getManufacturerName(String name) {
         String sql = "select distinct bn.brand_name, mn.manufacturer_name "
-                + "from openfda_drug_info_brand_name bn inner join openfda_drug_info_manufacturer_name mn "
+                + "from faers.openfda_drug_info_brand_name bn inner join faers.openfda_drug_info_manufacturer_name mn "
                 + "on (bn.openfda_id = mn.openfda_id) where mn.manufacturer_name like '%" + name +"%'";
         BeanPropertyRowMapper<ManufacturerName> bprm = new BeanPropertyRowMapper<>(ManufacturerName.class);
         return jdbcTemplate.query(sql, bprm);
