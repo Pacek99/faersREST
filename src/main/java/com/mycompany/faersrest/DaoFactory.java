@@ -26,17 +26,10 @@ import org.postgresql.ds.PGPoolingDataSource;
 public enum DaoFactory {
     INSTANCE;
 
-    private String pass;
     private BrandNameDao postgresBrandNameDao;
     private SubstanceNameDao postgresSubstanceNameDao;
     private ManufacturerNameDao postgresManufacturerNameDao;
     private SideEffectsDao postgresSideEffectsDao;
-
-    private DaoFactory() {
-        try (Scanner citac = new Scanner("passwordToDB.txt")) {
-            pass = citac.next();
-        }
-    }   
 
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
@@ -59,7 +52,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword(pass);
+            dataSource.setPassword("0000");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresBrandNameDao = new PostgresBrandNameDao(jdbcTemplate);
         }
@@ -71,7 +64,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword(pass);
+            dataSource.setPassword("0000");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSubstanceNameDao = new PostgresSubstanceNameDao(jdbcTemplate);
         }
@@ -83,7 +76,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword(pass);
+            dataSource.setPassword("0000");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
         }
@@ -95,7 +88,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword(pass);
+            dataSource.setPassword("0000");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSideEffectsDao = new PostgresSideEffectsDao(jdbcTemplate);
         }
