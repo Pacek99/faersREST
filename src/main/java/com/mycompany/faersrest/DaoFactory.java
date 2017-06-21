@@ -9,13 +9,13 @@ import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
+import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresRegisteredUserDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSideEffectsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSubstanceNameDao;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 import org.postgresql.ds.PGPoolingDataSource;
 
 
@@ -30,6 +30,7 @@ public enum DaoFactory {
     private SubstanceNameDao postgresSubstanceNameDao;
     private ManufacturerNameDao postgresManufacturerNameDao;
     private SideEffectsDao postgresSideEffectsDao;
+    private RegisteredUserDao postgresRegisteredUserDao;
 
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
@@ -46,13 +47,17 @@ public enum DaoFactory {
     public SideEffectsDao getSideEffectsDao() {
         return getPostgresSideEffectsDao();
     }
+    
+    public RegisteredUserDao getRegisteredUserDao() {
+        return getPostgresRegisteredUserDao();
+    }
 
     private BrandNameDao getPostgresBrandNameDao() {
         if (postgresBrandNameDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("0000");
+            dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresBrandNameDao = new PostgresBrandNameDao(jdbcTemplate);
         }
@@ -64,7 +69,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("0000");
+            dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSubstanceNameDao = new PostgresSubstanceNameDao(jdbcTemplate);
         }
@@ -76,7 +81,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("0000");
+            dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
         }
@@ -88,10 +93,22 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("0000");
+            dataSource.setPassword("sql");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSideEffectsDao = new PostgresSideEffectsDao(jdbcTemplate);
         }
         return postgresSideEffectsDao;
+    }
+
+    private RegisteredUserDao getPostgresRegisteredUserDao() {
+        if (postgresRegisteredUserDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("faers");
+            dataSource.setPassword("sql");
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresRegisteredUserDao = new PostgresRegisteredUserDao(jdbcTemplate);
+        }
+        return postgresRegisteredUserDao;
     }
 }
