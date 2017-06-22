@@ -6,6 +6,8 @@
 package com.mycompany.faersrest.DAO;
 
 import com.mycompany.faersrest.model.RegisteredUser;
+import com.mycompany.faersrest.model.SupportClass;
+import java.util.List;
 
 /**
  *
@@ -14,4 +16,6 @@ import com.mycompany.faersrest.model.RegisteredUser;
 public interface RegisteredUserDao {
     
     void addNewUser(RegisteredUser registeredUser);
+    
+    List<SupportClass> existingUser(String login);
 }

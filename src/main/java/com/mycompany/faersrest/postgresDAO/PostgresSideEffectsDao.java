@@ -54,5 +54,6 @@ public class PostgresSideEffectsDao implements SideEffectsDao{
                 + ")) AND er.receive_date::integer > " + date +" \n"
                 + "group by er.receive_date,r.meddra_pt order by quantity desc";
         BeanPropertyRowMapper<SideEffects> bprm = new BeanPropertyRowMapper<>(SideEffects.class);
-        return jdbcTemplate.query(sql, bprm);}
+        return jdbcTemplate.query(sql, bprm);
+    }
 }
