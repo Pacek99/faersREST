@@ -21,11 +21,19 @@ import javax.ws.rs.core.MediaType;
 @Path("/sideeffects")
 public class SideEffectsResource {
     SideEffectsService sideEffectsService = new SideEffectsService();
-    
+        
     @GET
     @Path("/{brandName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SideEffects> getBrandNames(@PathParam("brandName") String name){
+    public List<SideEffects> getSideEffectsByBrandName(@PathParam("brandName") String name){
         return sideEffectsService.getSideEffects(name); 
+    }
+    
+    @GET
+    @Path("/{brandName}/{date}") //date must be in format YYYYMMDD
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<SideEffects> getSideEffectsByBrandNameAndDate(@PathParam("brandName") String name, 
+                                                              @PathParam("date") String date){
+        return sideEffectsService.getSideEffectsByDate(name,date); 
     }
 }
