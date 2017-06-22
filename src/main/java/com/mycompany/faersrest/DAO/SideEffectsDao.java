@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface SideEffectsDao {
     List<SideEffects> getSideEffects(String name);
+    
+    List<SideEffects> getSideEffectsByDate(String name, String date);
 }

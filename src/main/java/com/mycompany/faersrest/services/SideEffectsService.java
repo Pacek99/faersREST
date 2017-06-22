@@ -26,4 +26,9 @@ public class SideEffectsService {
         List<SideEffects> list = dao.getSideEffects(name);
         return list;
     }
+    
+    public List<SideEffects> getSideEffectsByDate(String name, String date){        
+        List<SideEffects> list = dao.getSideEffectsByDate(name,date);
+        return list;
+    }
 }
