@@ -9,10 +9,12 @@ import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
+import com.mycompany.faersrest.DAO.PreferredDrugsDao;
 import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresPreferredDrugsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresRegisteredUserDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSideEffectsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSubstanceNameDao;
@@ -31,6 +33,7 @@ public enum DaoFactory {
     private ManufacturerNameDao postgresManufacturerNameDao;
     private SideEffectsDao postgresSideEffectsDao;
     private RegisteredUserDao postgresRegisteredUserDao;
+    private PreferredDrugsDao postgresPreferredDrugsDao;
 
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
@@ -50,6 +53,10 @@ public enum DaoFactory {
     
     public RegisteredUserDao getRegisteredUserDao() {
         return getPostgresRegisteredUserDao();
+    }
+    
+    public PreferredDrugsDao getPreferredDrugsDao() {
+        return getPostgresPreferredDrugsDao();
     }
 
     private BrandNameDao getPostgresBrandNameDao() {
@@ -110,5 +117,17 @@ public enum DaoFactory {
             postgresRegisteredUserDao = new PostgresRegisteredUserDao(jdbcTemplate);
         }
         return postgresRegisteredUserDao;
+    }
+    
+    private PreferredDrugsDao getPostgresPreferredDrugsDao() {
+        if (postgresPreferredDrugsDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("faers");
+            dataSource.setPassword("sql");
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresPreferredDrugsDao = new PostgresPreferredDrugsDao(jdbcTemplate);
+        }
+        return postgresPreferredDrugsDao;
     }
 }
