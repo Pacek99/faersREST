@@ -18,6 +18,8 @@ import com.mycompany.faersrest.postgresDAO.PostgresPreferredDrugsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresRegisteredUserDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSideEffectsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresSubstanceNameDao;
+import java.io.File;
+import java.util.Scanner;
 import org.postgresql.ds.PGPoolingDataSource;
 
 
@@ -27,7 +29,9 @@ import org.postgresql.ds.PGPoolingDataSource;
  */
 public enum DaoFactory {
     INSTANCE;
-
+    
+    private String pass;
+    
     private BrandNameDao postgresBrandNameDao;
     private SubstanceNameDao postgresSubstanceNameDao;
     private ManufacturerNameDao postgresManufacturerNameDao;
@@ -35,6 +39,17 @@ public enum DaoFactory {
     private RegisteredUserDao postgresRegisteredUserDao;
     private PreferredDrugsDao postgresPreferredDrugsDao;
 
+    private DaoFactory() {
+        try {
+            Scanner citac = new Scanner(new File("C:\\Users\\Patrik Rojek\\Documents\\NetBeansProjects\\faersREST\\src\\main\\java\\com\\mycompany\\faersrest\\config.txt"));
+            pass=citac.next();
+            citac.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public BrandNameDao getBrandNameDao() {
         return getPostgresBrandNameDao();
     }
@@ -64,7 +79,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresBrandNameDao = new PostgresBrandNameDao(jdbcTemplate);
         }
@@ -76,7 +91,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSubstanceNameDao = new PostgresSubstanceNameDao(jdbcTemplate);
         }
@@ -88,7 +103,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresManufacturerNameDao = new PostgresManufacturerNameDao(jdbcTemplate);
         }
@@ -100,7 +115,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresSideEffectsDao = new PostgresSideEffectsDao(jdbcTemplate);
         }
@@ -112,7 +127,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresRegisteredUserDao = new PostgresRegisteredUserDao(jdbcTemplate);
         }
@@ -124,7 +139,7 @@ public enum DaoFactory {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
             dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
             dataSource.setUser("faers");
-            dataSource.setPassword("sql");
+            dataSource.setPassword(pass);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             postgresPreferredDrugsDao = new PostgresPreferredDrugsDao(jdbcTemplate);
         }

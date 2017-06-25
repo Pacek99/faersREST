@@ -29,7 +29,7 @@ public class RegisteredUserResource {
     @POST 
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void addMessage(RegisteredUser ru){
+    public void addUser(RegisteredUser ru){
         rus.addUser(ru);
     }
     
