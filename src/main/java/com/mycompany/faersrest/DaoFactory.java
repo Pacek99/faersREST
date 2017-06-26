@@ -8,11 +8,13 @@ package com.mycompany.faersrest;
 import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
+import com.mycompany.faersrest.DAO.LogInDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
 import com.mycompany.faersrest.DAO.PreferredDrugsDao;
 import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresLogInDao;
 import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresPreferredDrugsDao;
 import com.mycompany.faersrest.postgresDAO.PostgresRegisteredUserDao;
@@ -38,13 +40,13 @@ public enum DaoFactory {
     private SideEffectsDao postgresSideEffectsDao;
     private RegisteredUserDao postgresRegisteredUserDao;
     private PreferredDrugsDao postgresPreferredDrugsDao;
+    private LogInDao postgresLogInDao;
 
     private DaoFactory() {
         try {
-            Scanner citac = new Scanner(new File("C:\\Users\\Patrik Rojek\\Documents\\NetBeansProjects\\faersREST\\src\\main\\java\\com\\mycompany\\faersrest\\config.txt"));
+            Scanner citac = new Scanner(new File("C:\\Users\\Patrik Rojek\\Documents\\NetBeansProjects\\faersREST\\config.txt"));
             pass=citac.next();
             citac.close();
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -74,6 +76,10 @@ public enum DaoFactory {
         return getPostgresPreferredDrugsDao();
     }
 
+    public LogInDao getLogInDao() {
+        return getPostgresLogInDao();
+    }
+    
     private BrandNameDao getPostgresBrandNameDao() {
         if (postgresBrandNameDao == null) {
             PGPoolingDataSource dataSource = new PGPoolingDataSource();
@@ -144,5 +150,17 @@ public enum DaoFactory {
             postgresPreferredDrugsDao = new PostgresPreferredDrugsDao(jdbcTemplate);
         }
         return postgresPreferredDrugsDao;
+    }
+
+    private LogInDao getPostgresLogInDao() {
+        if (postgresLogInDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("faers");
+            dataSource.setPassword(pass);
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresLogInDao = new PostgresLogInDao(jdbcTemplate);
+        }
+        return postgresLogInDao;
     }
 }

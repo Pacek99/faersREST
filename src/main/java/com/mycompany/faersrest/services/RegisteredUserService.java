@@ -7,9 +7,12 @@ package com.mycompany.faersrest.services;
 
 import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DaoFactory;
+import com.mycompany.faersrest.PasswordHashing;
 import com.mycompany.faersrest.model.RegisteredUser;
 import com.mycompany.faersrest.model.SupportClass;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -23,7 +26,11 @@ public class RegisteredUserService {
         dao = DaoFactory.INSTANCE.getRegisteredUserDao();
     } 
     
-    public void addUser(RegisteredUser ru){
+    public void addUser(RegisteredUser ru) throws NoSuchAlgorithmException{
+        byte[] newSalt = PasswordHashing.getSalt();
+        ru.setSalt(DatatypeConverter.printBase64Binary(newSalt));
+        String hashedPass = PasswordHashing.get_SHA_256_SecurePassword(ru.getPass(), newSalt);
+        ru.setPass(hashedPass);
         dao.addNewUser(ru);
     }
     
