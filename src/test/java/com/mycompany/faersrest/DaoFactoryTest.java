@@ -6,6 +6,7 @@
 package com.mycompany.faersrest;
 
 import com.mycompany.faersrest.DAO.BrandNameDao;
+import com.mycompany.faersrest.DAO.FilterDao;
 import com.mycompany.faersrest.DAO.LogInDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
 import com.mycompany.faersrest.DAO.PreferredDrugsDao;
@@ -111,6 +112,16 @@ public class DaoFactoryTest {
     public void testGetLogInDao() {
         System.out.println("getLogInDao");
         LogInDao result = DaoFactory.INSTANCE.getLogInDao();
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test of getFilterDao method, of class DaoFactory.
+     */
+    @Test
+    public void testGetFilterDao() {
+        System.out.println("getFilterDao");
+        FilterDao result = DaoFactory.INSTANCE.getFilterDao();
         assertNotNull(result);
     }
     
