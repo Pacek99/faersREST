@@ -8,12 +8,14 @@ package com.mycompany.faersrest;
 import com.mycompany.faersrest.postgresDAO.PostgresBrandNameDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.mycompany.faersrest.DAO.BrandNameDao;
+import com.mycompany.faersrest.DAO.FilterDao;
 import com.mycompany.faersrest.DAO.LogInDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
 import com.mycompany.faersrest.DAO.PreferredDrugsDao;
 import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
+import com.mycompany.faersrest.postgresDAO.PostgresFilterDao;
 import com.mycompany.faersrest.postgresDAO.PostgresLogInDao;
 import com.mycompany.faersrest.postgresDAO.PostgresManufacturerNameDao;
 import com.mycompany.faersrest.postgresDAO.PostgresPreferredDrugsDao;
@@ -41,10 +43,11 @@ public enum DaoFactory {
     private RegisteredUserDao postgresRegisteredUserDao;
     private PreferredDrugsDao postgresPreferredDrugsDao;
     private LogInDao postgresLogInDao;
-
+    private FilterDao postgresFilterDao;
+    
     private DaoFactory() {
         try {
-            Scanner citac = new Scanner(new File("C:\\Users\\Patrik Rojek\\Documents\\NetBeansProjects\\faersREST\\config.txt"));
+            Scanner citac = new Scanner(new File("C:\\Users\\Patrik Rojek\\Documents\\NetBeansProjects\\faersREST/config.txt"));
             pass=citac.next();
             citac.close();
         } catch (Exception ex) {
@@ -78,6 +81,10 @@ public enum DaoFactory {
 
     public LogInDao getLogInDao() {
         return getPostgresLogInDao();
+    }
+    
+    public FilterDao getFilterDao() {
+        return getPostgresFilterDao();
     }
     
     private BrandNameDao getPostgresBrandNameDao() {
@@ -162,5 +169,17 @@ public enum DaoFactory {
             postgresLogInDao = new PostgresLogInDao(jdbcTemplate);
         }
         return postgresLogInDao;
+    }
+
+    private FilterDao getPostgresFilterDao() {
+        if (postgresFilterDao == null) {
+            PGPoolingDataSource dataSource = new PGPoolingDataSource();
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/faersdb");
+            dataSource.setUser("faers");
+            dataSource.setPassword(pass);
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            postgresFilterDao = new PostgresFilterDao(jdbcTemplate);
+        }
+        return postgresFilterDao;
     }
 }
