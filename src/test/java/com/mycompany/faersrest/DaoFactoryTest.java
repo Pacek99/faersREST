@@ -6,7 +6,10 @@
 package com.mycompany.faersrest;
 
 import com.mycompany.faersrest.DAO.BrandNameDao;
+import com.mycompany.faersrest.DAO.LogInDao;
 import com.mycompany.faersrest.DAO.ManufacturerNameDao;
+import com.mycompany.faersrest.DAO.PreferredDrugsDao;
+import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
 import org.junit.After;
@@ -78,6 +81,36 @@ public class DaoFactoryTest {
     public void testGetSideEffectsDao() {
         System.out.println("getSideEffectsDao");
         SideEffectsDao result = DaoFactory.INSTANCE.getSideEffectsDao();
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test of getRegisteredUserDao method, of class DaoFactory.
+     */
+    @Test
+    public void testGetRegisteredUserDao() {
+        System.out.println("getRegisteredUserDao");
+        RegisteredUserDao result = DaoFactory.INSTANCE.getRegisteredUserDao();
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test of getPreferredDrugsDao method, of class DaoFactory.
+     */
+    @Test
+    public void testGetPreferredDrugsDao() {
+        System.out.println("getPreferredDrugsDao");
+        PreferredDrugsDao result = DaoFactory.INSTANCE.getPreferredDrugsDao();
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test of getLogInDao method, of class DaoFactory.
+     */
+    @Test
+    public void testGetLogInDao() {
+        System.out.println("getLogInDao");
+        LogInDao result = DaoFactory.INSTANCE.getLogInDao();
         assertNotNull(result);
     }
     
