@@ -5,7 +5,7 @@
  */
 package com.mycompany.faersrest.resources;
 
-import com.mycompany.faersrest.model.PreferredDrugs;
+import com.mycompany.faersrest.model.BrandName;
 import com.mycompany.faersrest.services.PreferredDrugsService;
 import java.util.List;
 import javax.ws.rs.DELETE;
@@ -28,7 +28,7 @@ public class PreferredDrugsResource {
     @GET
     @Path("/{userLogin}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<PreferredDrugs> getPreferredDrugs(@PathParam("userLogin") String user){
+    public List<BrandName> getPreferredDrugs(@PathParam("userLogin") String user){
         return preferredDrugsService.getPreferredDrugs(user); 
     }
     

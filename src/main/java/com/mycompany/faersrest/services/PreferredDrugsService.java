@@ -7,7 +7,7 @@ package com.mycompany.faersrest.services;
 
 import com.mycompany.faersrest.DAO.PreferredDrugsDao;
 import com.mycompany.faersrest.DaoFactory;
-import com.mycompany.faersrest.model.PreferredDrugs;
+import com.mycompany.faersrest.model.BrandName;
 import java.util.List;
 
 /**
@@ -22,8 +22,8 @@ public class PreferredDrugsService {
         dao = DaoFactory.INSTANCE.getPreferredDrugsDao();
     }    
     
-    public List<PreferredDrugs> getPreferredDrugs(String user){        
-        List<PreferredDrugs> list = dao.getPreferredDrugs(user);
+    public List<BrandName> getPreferredDrugs(String user){        
+        List<BrandName> list = dao.getPreferredDrugs(user);
         return list;
     }
 

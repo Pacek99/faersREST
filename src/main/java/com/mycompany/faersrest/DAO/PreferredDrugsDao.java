@@ -5,7 +5,7 @@
  */
 package com.mycompany.faersrest.DAO;
 
-import com.mycompany.faersrest.model.PreferredDrugs;
+import com.mycompany.faersrest.model.BrandName;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PreferredDrugsDao {
     
-    List<PreferredDrugs> getPreferredDrugs(String user);    
+    List<BrandName> getPreferredDrugs(String user);    
 
     public void deletePreferredDrug(String user, String brandName);
 

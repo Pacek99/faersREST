@@ -6,7 +6,7 @@
 package com.mycompany.faersrest.postgresDAO;
 
 import com.mycompany.faersrest.DAO.PreferredDrugsDao;
-import com.mycompany.faersrest.model.PreferredDrugs;
+import com.mycompany.faersrest.model.BrandName;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,9 +24,9 @@ public class PostgresPreferredDrugsDao implements PreferredDrugsDao {
     }
     
     @Override
-    public List<PreferredDrugs> getPreferredDrugs(String user) {
-        String sql = "select pd.drug_id,odibn.brand_name from faers.preferred_drug pd join faers.openfda_drug_info_brand_name odibn on pd.drug_id=odibn.openfda_id where faers_user_id=(select id from faers.faers_user where login='" + user + "')";
-        BeanPropertyRowMapper<PreferredDrugs> bprm = new BeanPropertyRowMapper<>(PreferredDrugs.class);
+    public List<BrandName> getPreferredDrugs(String user) {
+        String sql = "select odibn.brand_name from faers.preferred_drug pd join faers.openfda_drug_info_brand_name odibn on pd.drug_id=odibn.openfda_id where faers_user_id=(select id from faers.faers_user where login='" + user + "')";
+        BeanPropertyRowMapper<BrandName> bprm = new BeanPropertyRowMapper<>(BrandName.class);
         return jdbcTemplate.query(sql, bprm);
     }
 
