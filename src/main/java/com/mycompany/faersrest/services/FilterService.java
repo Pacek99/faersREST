@@ -32,7 +32,7 @@ public class FilterService {
         if (manufacturerName.equals("0")) {
             manufacturerName="";
         }
-        List<Filter> list = dao.filterDrugs(brandName, substanceName, manufacturerName);
+        List<Filter> list = dao.filterDrugs(brandName.toUpperCase(), substanceName.toUpperCase(), manufacturerName.toUpperCase());
         return list;
     }
     

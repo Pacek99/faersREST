@@ -28,8 +28,8 @@ public class PostgresFilterDao implements FilterDao{
         String sql = "select distinct bn.brand_name, sn.substance_name, mn.manufacturer_name \n" +
 "                from faers.openfda_drug_info_brand_name bn inner join faers.openfda_drug_info_substance_name sn \n" +
 "                on (bn.openfda_id = sn.openfda_id) join faers.openfda_drug_info_manufacturer_name mn \n" +
-"                on (bn.openfda_id = mn.openfda_id) where bn.brand_name like '%" + brand_name +"%'and sn.substance_name like '%" + substance_name +"%' \n" +
-"                and mn.manufacturer_name like '%" + manufacturer_name +"%'";
+"                on (bn.openfda_id = mn.openfda_id) where upper(bn.brand_name) like '%" + brand_name +"%'and upper(sn.substance_name) like '%" + substance_name +"%' \n" +
+"                and upper(mn.manufacturer_name) like '%" + manufacturer_name +"%'";
         BeanPropertyRowMapper<Filter> bprm = new BeanPropertyRowMapper<>(Filter.class);
         return jdbcTemplate.query(sql, bprm);
     }
