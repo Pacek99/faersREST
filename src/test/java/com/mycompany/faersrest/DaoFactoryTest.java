@@ -13,6 +13,7 @@ import com.mycompany.faersrest.DAO.PreferredDrugsDao;
 import com.mycompany.faersrest.DAO.RegisteredUserDao;
 import com.mycompany.faersrest.DAO.SideEffectsDao;
 import com.mycompany.faersrest.DAO.SubstanceNameDao;
+import com.mycompany.faersrest.DAO.TestModulesDao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -122,6 +123,16 @@ public class DaoFactoryTest {
     public void testGetFilterDao() {
         System.out.println("getFilterDao");
         FilterDao result = DaoFactory.INSTANCE.getFilterDao();
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test of getTestModulesDao method, of class DaoFactory.
+     */
+    @Test
+    public void testGetTestModulesDao() {
+        System.out.println("getTestModulesDao");
+        TestModulesDao result = DaoFactory.INSTANCE.getTestModulesDao();
         assertNotNull(result);
     }
     
