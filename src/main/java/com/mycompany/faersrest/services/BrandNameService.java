@@ -23,7 +23,7 @@ public class BrandNameService {
     }    
     
     public List<BrandName> getBrandNames(String name){        
-        List<BrandName> list = dao.getBrandNamesByName(name);
+        List<BrandName> list = dao.getBrandNamesByName(name.toUpperCase());
         return list;
     }
 }

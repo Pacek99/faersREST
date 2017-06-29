@@ -26,7 +26,7 @@ public class PostgresBrandNameDao implements BrandNameDao {
     
     @Override
     public List<BrandName> getBrandNamesByName(String name) {
-        String sql = "select distinct brand_name from faers.openfda_drug_info_brand_name where brand_name like '%" + name +"%'";
+        String sql = "select distinct brand_name from faers.openfda_drug_info_brand_name where upper(brand_name) like '%" + name +"%'";
         BeanPropertyRowMapper<BrandName> bprm = new BeanPropertyRowMapper<>(BrandName.class);
         return jdbcTemplate.query(sql, bprm);
     }

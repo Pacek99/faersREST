@@ -22,7 +22,7 @@ public class SubstanceNameService {
     }    
     
     public List<SubstanceName> getSubstanceName(String name){        
-        List<SubstanceName> list = dao.getSubstanceName(name);
+        List<SubstanceName> list = dao.getSubstanceName(name.toUpperCase());
         return list;
     }
 }

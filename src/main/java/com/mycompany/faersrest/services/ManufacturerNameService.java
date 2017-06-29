@@ -22,7 +22,7 @@ public class ManufacturerNameService {
     }    
     
     public List<ManufacturerName> getManufacturerName(String name){        
-        List<ManufacturerName> list = dao.getManufacturerName(name);
+        List<ManufacturerName> list = dao.getManufacturerName(name.toUpperCase());
         return list;
     }
 }

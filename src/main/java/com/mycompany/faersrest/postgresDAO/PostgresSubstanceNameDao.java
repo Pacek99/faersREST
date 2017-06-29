@@ -27,7 +27,7 @@ public class PostgresSubstanceNameDao implements SubstanceNameDao {
     public List<SubstanceName> getSubstanceName(String name) {
         String sql = "select distinct bn.brand_name, sn.substance_name "
                 + "from faers.openfda_drug_info_brand_name bn inner join faers.openfda_drug_info_substance_name sn "
-                + "on (bn.openfda_id = sn.openfda_id) where sn.substance_name like '%" + name +"%'";
+                + "on (bn.openfda_id = sn.openfda_id) where upper(sn.substance_name) like '%" + name +"%'";
         BeanPropertyRowMapper<SubstanceName> bprm = new BeanPropertyRowMapper<>(SubstanceName.class);
         return jdbcTemplate.query(sql, bprm);
     }   
