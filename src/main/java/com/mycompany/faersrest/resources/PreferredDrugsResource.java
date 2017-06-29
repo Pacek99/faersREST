@@ -36,13 +36,13 @@ public class PreferredDrugsResource {
     @Path("/{userLogin}/{brandName}")
     public void deletePreferredDrug(@PathParam("userLogin") String user, 
                                     @PathParam("brandName") String brandName){
-        preferredDrugsService.deletePreferredDrug(user,brandName);
+        preferredDrugsService.deletePreferredDrug(user,brandName.replace("%20", " "));
     }
     
     @PUT
     @Path("/{userLogin}/{brandName}")
     public void addPreferredDrug(@PathParam("userLogin") String user, 
                                  @PathParam("brandName") String brandName){
-        preferredDrugsService.addPreferredDrug(user, brandName);
+        preferredDrugsService.addPreferredDrug(user, brandName.replace("%20", " "));
     }
 }

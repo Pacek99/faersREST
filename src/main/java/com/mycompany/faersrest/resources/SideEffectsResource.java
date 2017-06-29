@@ -26,7 +26,7 @@ public class SideEffectsResource {
     @Path("/{brandName}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<SideEffects> getSideEffectsByBrandName(@PathParam("brandName") String name){
-        return sideEffectsService.getSideEffects(name); 
+        return sideEffectsService.getSideEffects(name.replace("%20", " ")); 
     }
     
     @GET
@@ -34,6 +34,6 @@ public class SideEffectsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<SideEffects> getSideEffectsByBrandNameAndDate(@PathParam("brandName") String name, 
                                                               @PathParam("date") String date){
-        return sideEffectsService.getSideEffectsByDate(name,date); 
+        return sideEffectsService.getSideEffectsByDate(name.replace("%20", " "),date); 
     }
 }

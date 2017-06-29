@@ -29,6 +29,6 @@ public class FilterResource {
     public List<Filter> filterDrugs(@PathParam("brandName") String brandName,
                                     @PathParam("substanceName") String substanceName,
                                     @PathParam("manufacturerName") String manufacturerName){
-        return filterService.filterDrugs(brandName,substanceName,manufacturerName); 
+        return filterService.filterDrugs(brandName.replace("%20", " "),substanceName.replace("%20", " "),manufacturerName.replace("%20", " ")); 
     }
 }

@@ -26,6 +26,6 @@ public class SubstanceNameResource {
     @Path("/{substanceName}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<SubstanceName> getBrandNames(@PathParam("substanceName") String name){
-        return substanceNameService.getSubstanceName(name); 
+        return substanceNameService.getSubstanceName(name.replace("%20", " ")); 
     }
 }
